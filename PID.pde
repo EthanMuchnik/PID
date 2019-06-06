@@ -33,7 +33,7 @@ void setup(){
 }
 void draw(){
 frame ++;
-int millis = millis()/10;
+int millis = millis();
 double xTarget = 250;
 double yTarget = 250;
 background(#000000);
