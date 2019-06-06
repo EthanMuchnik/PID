@@ -1,8 +1,8 @@
 //PID and Speeed Values
-double kP = 0.1;
+double kP = 0.01;
 double kI = 0.0;
-double kD = 43;
-double kS = 0.5;
+double kD = 2;
+double kS = 0;
 
 double xPos = 0;
 double yPos = 0;
@@ -27,15 +27,17 @@ double error_prevX = 0;
 
 double framerate = 60;
 double frame = 0;
+int millis; 
+
 void setup(){
   size(500,500);
   frameRate((float)framerate);
 }
 void draw(){
+millis = millis();
 frame ++;
-int millis = millis();
-double xTarget = 250;
-double yTarget = 250;
+double xTarget = mouseX;
+double yTarget = mouseY;
 background(#000000);
 line (0,mouseY,width,mouseY);
 line (mouseX,0,mouseX,height);
