@@ -1,7 +1,7 @@
 //PID and Speeed Values
 double kP = 0.1;
 double kI = 0.0;
-double kD = 43;
+double kD = 40;
 double kS = 0.5;
 
 double xPos = 0;
