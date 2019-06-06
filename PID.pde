@@ -2,7 +2,7 @@
 double kP = 0.1;
 double kI = 0.0;
 double kD = 50;
-double kS = 0.25;
+double kS = 0.5;
 
 double xPos = 0;
 double yPos = 0;
