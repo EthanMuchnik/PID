@@ -25,7 +25,6 @@ double errorX = 0;
 double error_prevX = 0;
 
 double framerate = 60;
-<<<<<<< HEAD
 double frame = 0;
 int millis; 
 
