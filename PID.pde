@@ -1,8 +1,7 @@
 //PID and Speeed Values
-double kP = 0.01;
-double kI = 0.0;
-double kD = 2;
-double kS = 0;
+double kP = 0.1;
+double kI = 0.0001;
+double kD = 0.010;
 
 double xPos = 0;
 double yPos = 0;
@@ -26,16 +25,17 @@ double errorX = 0;
 double error_prevX = 0;
 
 double framerate = 60;
+<<<<<<< HEAD
 double frame = 0;
 int millis; 
+
 
 void setup(){
   size(500,500);
   frameRate((float)framerate);
 }
 void draw(){
-millis = millis();
-frame ++;
+int millis = millis();
 double xTarget = mouseX;
 double yTarget = mouseY;
 background(#000000);
@@ -50,20 +50,21 @@ double dt = 1/(framerate);
 //Y axis
 errorY = yTarget - yPos-7.5;
 integralY += (errorY * dt);
-derivativeY = (ySpeed - ySpeed_prev)/(dt);
+derivativeY = (errorY - error_prevY)/(dt);
 
-ySpeed += (errorY * kP) + (integralY * kI) + (derivativeY * kD)- (ySpeed * kS);
+ySpeed += (errorY * kP) + (integralY * kI) + (derivativeY * kD);
 
 //X axis
 errorX = xTarget - xPos-7.5;
 integralX += (errorX * dt);
-derivativeX = (xSpeed - xSpeed_prev)/(dt);
+derivativeX = (errorX - error_prevX)/(dt);
 
-xSpeed += (errorX * kP) + (integralX * kI) + (derivativeX * kD)- (xSpeed * kS);
+xSpeed += (errorX * kP) + (integralX * kI) + (derivativeX * kD);
 
 xPos = xPos + xSpeed;
 yPos = yPos + ySpeed;
 error_prevY = errorY;
+error_prevX = errorX;
 xSpeed_prev = xSpeed;
 ySpeed_prev = ySpeed;
 //timer
