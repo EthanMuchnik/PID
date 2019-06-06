@@ -1,10 +1,10 @@
-double kP = 0.2;
-double kI = 0.5;
-double kD = 4.5;
-double kS = 0.3;
+double kP = 0.1;
+double kI = 0.0;
+double kD = 50;
+double kS = 0.25;
 
-double xPos = 960;
-double yPos = 540;
+double xPos = 0;
+double yPos = 0;
 
 double xSpeed = 0;
 double xSpeed_prev = 0;
@@ -25,13 +25,16 @@ double errorX = 0;
 double error_prevX = 0;
 
 double framerate = 60;
+double frame = 0;
 void setup(){
-  size(1920,1080);
+  size(500,500);
   frameRate((float)framerate);
 }
 void draw(){
-double xTarget = mouseX;
-double yTarget = mouseY;
+frame ++;
+int millis = millis()/10;
+double xTarget = 250;
+double yTarget = 250;
 background(#000000);
 line (0,mouseY,width,mouseY);
 line (mouseX,0,mouseX,height);
@@ -60,4 +63,9 @@ yPos = yPos + ySpeed;
 error_prevY = errorY;
 xSpeed_prev = xSpeed;
 ySpeed_prev = ySpeed;
+//timer
+  if (errorY <=0.1 && errorY >= -0.1 && errorX >= -0.1 && errorX <= 0.1 && xSpeed <=0.1 && xSpeed >= -0.1 && ySpeed <=0.1 && ySpeed >= -0.1){
+    System.out.println(millis);
+   }
+
 }
