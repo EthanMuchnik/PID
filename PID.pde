@@ -1,8 +1,8 @@
 //PID and Speeed Values
+import java.lang.Math;
 double kP = 0.1;
-double kI = 0.0;
-double kD = 50;
-double kS = 0.25;
+double kI = 0.0001;
+double kD = 0.010;
 
 double xPos = 0;
 double yPos = 0;
@@ -27,46 +27,55 @@ double error_prevX = 0;
 
 double framerate = 60;
 double frame = 0;
+Rover Rover1;
+
+int millis; 
+//double y = 0 ;
+//double x = 9;
 void setup(){
-  size(500,500);
+  Rover1 = new Rover();
+  
+  size(1920,1080);
   frameRate((float)framerate);
+  background(#FFAACC);
+
+
 }
 void draw(){
-frame ++;
-int millis = millis()/10;
-double xTarget = 250;
-double yTarget = 250;
-background(#000000);
+//y = 500 * Math.sin(xPos / 50) + 540;
+double xTarget = mouseX;
+double yTarget = mouseY;
+/*
+double xTarget = x;
+double yTarget = y;
+*/
+background(#E18700);
 line (0,mouseY,width,mouseY);
 line (mouseX,0,mouseX,height);
 stroke (#ffffff);
-square((float)xPos, (float)yPos, 15);
+Rover();
 
 //PID bit
 double dt = 1/(framerate);
 
 //Y axis
-errorY = yTarget - yPos-7.5;
+errorY = yTarget - yPos-squareLength/2;
 integralY += (errorY * dt);
-derivativeY = (ySpeed - ySpeed_prev)/(dt);
+derivativeY = (errorY - error_prevY)/(dt);
 
-ySpeed += (errorY * kP) + (integralY * kI) + (derivativeY * kD)- (ySpeed * kS);
+ySpeed += (errorY * kP) + (integralY * kI) + (derivativeY * kD);
 
 //X axis
-errorX = xTarget - xPos-7.5;
+errorX = xTarget - xPos-squareLength/2;
 integralX += (errorX * dt);
-derivativeX = (xSpeed - xSpeed_prev)/(dt);
+derivativeX = (errorX - error_prevX)/(dt);
 
-xSpeed += (errorX * kP) + (integralX * kI) + (derivativeX * kD)- (xSpeed * kS);
+xSpeed += (errorX * kP) + (integralX * kI) + (derivativeX * kD);
 
 xPos = xPos + xSpeed;
 yPos = yPos + ySpeed;
 error_prevY = errorY;
+error_prevX = errorX;
 xSpeed_prev = xSpeed;
 ySpeed_prev = ySpeed;
-//timer
-  if (errorY <=0.1 && errorY >= -0.1 && errorX >= -0.1 && errorX <= 0.1 && xSpeed <=0.1 && xSpeed >= -0.1 && ySpeed <=0.1 && ySpeed >= -0.1){
-    System.out.println(millis);
-   }
-
 }
