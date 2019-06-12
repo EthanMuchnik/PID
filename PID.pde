@@ -1,4 +1,5 @@
 //PID and Speeed Values
+import java.lang.Math;
 double kP = 0.1;
 double kI = 0.0001;
 double kD = 0.010;
@@ -27,16 +28,22 @@ double error_prevX = 0;
 double framerate = 60;
 double frame = 0;
 int millis; 
-
-
+//double y = 0 ;
+//double x = 9;
 void setup(){
   size(1920,1080);
   frameRate((float)framerate);
+  background(#000000);
+
 }
 void draw(){
-int millis = millis();
+//y = 500 * Math.sin(xPos / 50) + 540;
 double xTarget = mouseX;
 double yTarget = mouseY;
+/*
+double xTarget = x;
+double yTarget = y;
+*/
 background(#000000);
 line (0,mouseY,width,mouseY);
 line (mouseX,0,mouseX,height);
@@ -66,9 +73,4 @@ error_prevY = errorY;
 error_prevX = errorX;
 xSpeed_prev = xSpeed;
 ySpeed_prev = ySpeed;
-//timer
-  if (errorY <=0.1 && errorY >= -0.1 && errorX >= -0.1 && errorX <= 0.1 && xSpeed <=0.1 && xSpeed >= -0.1 && ySpeed <=0.1 && ySpeed >= -0.1){
-    System.out.println(millis);
-   }
-
 }
