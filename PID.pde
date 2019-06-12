@@ -2,7 +2,7 @@
 import java.lang.Math;
 double kP = 0.1;
 double kI = 0.0001;
-double kD = 0.010;
+double kD = 0.01;
 
 double xPos = 0;
 double yPos = 0;
@@ -29,7 +29,7 @@ double framerate = 60;
 double frame = 0;
 int millis; 
 //double y = 0 ;
-//double x = 9;
+//double x = 0;
 void setup(){
   size(1920,1080);
   frameRate((float)framerate);
@@ -38,6 +38,7 @@ void setup(){
 }
 void draw(){
 //y = 500 * Math.sin(xPos / 50) + 540;
+//x += 3;
 double xTarget = mouseX;
 double yTarget = mouseY;
 /*
