@@ -100,16 +100,19 @@ ySpeed_prev = ySpeed;
 }
  void Rover()
 {
+  pushMatrix();
+  translate((float) xPos, (float) yPos);
+  rotate(frameCount * PI / 30);
   fill(#666666);
-  square((float)xPos, (float)yPos, (float)squareLength); 
+  square((float) -squareLength / 2, (float) -squareLength / 2, (float)squareLength); 
   fill(#A7EE23);
-  for(int x = 40; x<squareLength; x+=60){
-     ellipse((float)xPos+x,(float)yPos,20,-30);
+  for(int x = 40 - (int) (squareLength / 2); x<squareLength / 2; x+=60){
+     ellipse((float)x,(float) -squareLength / 2,20,-30);
   }
-  for(int x = 40; x<squareLength; x+=60){
-     ellipse((float)xPos+x,(float)yPos + (float)squareLength,20,30);
+  for(int x = 40 - (int) (squareLength / 2); x<squareLength / 2; x+=60){
+     ellipse((float)x,(float)squareLength / 2,20,30);
   }
-  
+  popMatrix();
   
 
 }
