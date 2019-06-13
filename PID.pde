@@ -41,7 +41,7 @@ void setup(){
 
 }
 void draw(){
-y = 300 * Math.sin(xPos / 50) + 540;
+y = 100 * Math.sin(xPos / 50) + 540;
 x += 3;
 //double xTarget = mouseX;
 //double yTarget = mouseY;
@@ -101,6 +101,15 @@ ySpeed_prev = ySpeed;
  void Rover()
 {
   fill(#666666);
-  square((float)xPos, (float)yPos, (float)squareLength);
-  rect((float)xPos+((float)squareLength/2 -80),(float)yPos,567,24);
+  square((float)xPos, (float)yPos, (float)squareLength); 
+  fill(#A7EE23);
+  for(int x = 40; x<squareLength; x+=60){
+     ellipse((float)xPos+x,(float)yPos,20,-30);
+  }
+  for(int x = 40; x<squareLength; x+=60){
+     ellipse((float)xPos+x,(float)yPos + (float)squareLength,20,30);
+  }
+  
+  
+
 }
