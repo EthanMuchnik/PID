@@ -2,7 +2,7 @@
 import java.lang.Math;
 double kP = 0.1;
 double kI = 0.0001;
-double kD = 0.010;
+double kD = 0.01;
 
 double xPos = 0;
 double yPos = 0;
@@ -27,39 +27,40 @@ double error_prevX = 0;
 
 double framerate = 60;
 double frame = 0;
-Rover Rover1;
+
+double squareLength = 200;
+
 
 int millis; 
-//double y = 0 ;
-//double x = 9;
+double y = 0 ;
+double x = 0;
 void setup(){
-  Rover1 = new Rover();
-  
   size(1920,1080);
   frameRate((float)framerate);
-  background(#FFAACC);
-
+  //background(#000000);
 
 }
 void draw(){
-//y = 500 * Math.sin(xPos / 50) + 540;
-double xTarget = mouseX;
-double yTarget = mouseY;
-/*
+y = 300 * Math.sin(xPos / 50) + 540;
+x += 3;
+//double xTarget = mouseX;
+//double yTarget = mouseY;
+
 double xTarget = x;
 double yTarget = y;
-*/
-background(#E18700);
+
+ marsSetup();
 line (0,mouseY,width,mouseY);
 line (mouseX,0,mouseX,height);
 stroke (#ffffff);
 Rover();
 
+
 //PID bit
 double dt = 1/(framerate);
 
 //Y axis
-errorY = yTarget - yPos-squareLength/2;
+errorY = yTarget - yPos- squareLength/2;
 integralY += (errorY * dt);
 derivativeY = (errorY - error_prevY)/(dt);
 
@@ -78,4 +79,28 @@ error_prevY = errorY;
 error_prevX = errorX;
 xSpeed_prev = xSpeed;
 ySpeed_prev = ySpeed;
+}
+ void marsSetup()
+{
+    background(#E58800);
+    int mX = 0;
+    int mY = 0;
+    int mLength = 30;
+    for(mX = 0;mX<width;mX+=200)
+    {
+      fill(000000);
+       for(mY = 0;mY<width;mY+=200)
+       {
+         fill(#000000);
+         square(mX,mY,mLength);
+         fill(#D2691E);
+         square(mX+50,mY+80,mLength+30);
+       }
+    }
+}
+ void Rover()
+{
+  fill(#666666);
+  square((float)xPos, (float)yPos, (float)squareLength);
+  rect((float)xPos+((float)squareLength/2 -80),(float)yPos,567,24);
 }
