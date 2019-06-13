@@ -28,8 +28,8 @@ double xTarget;
 double yTarget;
 
     //Comment for mouse version
-//double y = 0;
-//double x = 0;
+double y = 0;
+double x = 0;
 
 void setup(){
   //Sets up Size and Framerate
@@ -39,14 +39,14 @@ void setup(){
 
 void draw(){
       //Comment for mouse version
-  //double xTarget = x;
-  //double yTarget = y;
-  //y = 500 * Math.sin(xPos / 50) + 520;
-  //x += 3;
+  double xTarget = x;
+  double yTarget = y;
+  y = 500 * Math.sin(xPos / 50) + 520;
+  x += 3;
   
       //Comment for function Version
-  xTarget = mouseX;
-  yTarget = mouseY;
+  //xTarget = mouseX;
+  //yTarget = mouseY;
   
   //Updates background and Creates Square
   background(#000000); //Comment to Graph
