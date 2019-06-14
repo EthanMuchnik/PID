@@ -5,7 +5,9 @@ double kI = 0.0001;
 double kD = 0.01;
 
 double xPos = 0;
+double xPos_prev = 0;
 double yPos = 0;
+double yPos_prev = 0;
 
 double xSpeed = 0;
 double xSpeed_prev = 0;
@@ -19,13 +21,15 @@ double derivativeY = 0;
 double integralX = 0;
 double derivativeX = 0;
 
+double functionDerivative;
+
 double errorY = 0;
 double error_prevY = 0;
 
 double errorX = 0;
 double error_prevX = 0;
 
-double framerate = 60;
+double framerate = 30;
 double frame = 0;
 
 double squareLength = 200;
@@ -41,7 +45,7 @@ void setup(){
 
 }
 void draw(){
-y = 100 * Math.sin(xPos / 50) + 540;
+y = 100 * Math.sin(xPos / 120) + 540;
 x += 3;
 //double xTarget = mouseX;
 //double yTarget = mouseY;
@@ -49,15 +53,22 @@ x += 3;
 double xTarget = x;
 double yTarget = y;
 
- marsSetup();
+marsSetup();
+double dt = 1/(framerate);
+functionDerivative = (yPos - yPos_prev)/(3); 
+System.out.println(functionDerivative);
+xPos_prev = xPos; 
+yPos_prev = yPos; 
+ 
 line (0,mouseY,width,mouseY);
 line (mouseX,0,mouseX,height);
 stroke (#ffffff);
 Rover();
 
 
+
 //PID bit
-double dt = 1/(framerate);
+
 
 //Y axis
 errorY = yTarget - yPos- squareLength/2;
@@ -79,6 +90,8 @@ error_prevY = errorY;
 error_prevX = errorX;
 xSpeed_prev = xSpeed;
 ySpeed_prev = ySpeed;
+
+
 }
  void marsSetup()
 {
@@ -102,7 +115,7 @@ ySpeed_prev = ySpeed;
 {
   pushMatrix();
   translate((float) xPos, (float) yPos);
-  rotate(frameCount * PI / 30);
+  rotate(atan((float)functionDerivative));
   fill(#666666);
   square((float) -squareLength / 2, (float) -squareLength / 2, (float)squareLength); 
   fill(#A7EE23);
