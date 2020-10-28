@@ -1,4 +1,4 @@
-# PID
+# PID Simulation
 This is a PID project that consisted of two different projects mini-projects. The short descriptions and video links are below.
 
 
